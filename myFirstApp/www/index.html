@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>Getting Started Sample</title>
+   <style type="text/css">
+     body 
+  {
+    background:#000 none repeat scroll 0 0;
+    color:#ccc;
+    font-family:Helvetica, Verdana, Geneva, sans-serif;
+    margin:0;
+    border-top:1px solid #393939;
+  }
+
+  h1
+  {
+     text-align:center;
+     font-size:18px;
+     color:#FFC312; /* Mango me! */
+  }
+
+
+   </style>
+   <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+   <script type="text/javascript">
+       document.addEventListener("deviceready", onDeviceReady, false);
+
+       var valueX;
+       var valueY;
+       var valueZ;
+
+       function onDeviceReady() {
+           valueX = document.getElementById("valueX");
+           valueY = document.getElementById("valueY");
+           valueZ = document.getElementById("valueZ");
+           startWatch();
+       }
+
+       function startWatch() {
+           var options = { frequency: 500 };
+           navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+       }
+
+       function onSuccess(acceleration) {
+           valueX.innerHTML = "X: " + acceleration.x;
+           valueY.innerHTML = "Y: " + acceleration.y;
+           valueZ.innerHTML = "Z: " + acceleration.z;
+       }
+
+       function onError() {
+           alert('onError!');
+       }
+   </script> 
+</head>
+<body>
+    <h1>Accelerometer sample</h1>
+    <div class="valueAcc" id="valueX"></div>
+    <div class="valueAcc" id="valueY"></div>
+    <div class="valueAcc" id="valueZ"></div>
+</body>
+</html>
